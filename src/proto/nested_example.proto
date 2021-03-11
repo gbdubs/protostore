@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package com.gradybward.protostore;
+
+message OuterMessage {
+  repeated InnerMessage inner_message = 1;
+}
+
+message InnerMessage {
+  Country country = 1;
+  repeated InnerInnerMessage inner_inner_message = 4;
+}
+
+message InnerInnerMessage {
+  string str = 1;
+  int32 int32 = 2;
+}
+
+enum Country {
+  UNKNOWN = 0;
+  USA = 1;
+  CANDADA = 2;
+}

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package com.gradybward.protostore;
+
+message ExampleMessage {
+  reserved 3;
+  repeated string optional_message = 1;
+  repeated bool a_boolean = 2;
+  repeated int32 some_number = 4;
+  repeated SomeOptions some_options = 5;
+}
+
+enum SomeOptions {
+  UNDEFINED = 0;
+  ACCEPTABLE = 1;
+  MEDIOCORE = 2;
+  STELLAR = 3;
+}

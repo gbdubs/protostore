@@ -1,0 +1,16 @@
+@import "antd/dist/antd.css";
+
+.protostore-input {
+  text-align: left;
+}
+
+.protostore-input-delete-btn {
+  display: inline-block;
+  margin-left: -1px;
+  vertical-align: top;
+}
+
+.protostore-input-delete-btn:hover {
+  color: #ff4d4f;
+  border-color: #ff4d4f;
+}

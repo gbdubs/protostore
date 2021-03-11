@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package com.gradybward.protostore;
+
+message PrimitiveFields {
+
+  double a_double = 1;
+  
+  float a_float = 2;
+
+  // Lets see if this works!
+  int32 thirty_two_bit_int = 3;
+  
+  // Lets see if this works!
+  int64 sixty_four_bit_int = 4;
+  
+  // Lets see if this works!
+  uint32 unsigned_thirty_two_bit_int = 5;
+  
+  // Lets see if this works!
+  uint64 unsigned_sixty_four_bit_int = 6;
+  
+  // Lets see if this works!
+  sint32 s_thirty_two_bit_int = 7;
+  
+  // Lets see if this works!
+  sint64 s_sixty_four_bit_int = 8;
+  
+  // Lets see if this works!
+  fixed32 fixed_thirty_two_bit_int = 9;
+  
+  // Lets see if this works!
+  fixed64 fixed_sixty_four_bit_int = 10;
+  
+  // Lets see if this works!
+  sfixed32 s_fixed_thirty_two_bit_int = 11;
+  
+  // Lets see if this works!
+  sfixed64 s_fixed_sixty_four_bit_int = 12;
+  
+  bool a_boolean = 13;
+  
+  string a_string = 14;
+  
+  bytes bytes = 15;
+}

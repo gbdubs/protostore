@@ -1,0 +1,154 @@
+{
+  "nested": {
+    "com": {
+      "nested": {
+        "gradybward": {
+          "nested": {
+            "protostore": {
+              "nested": {
+                "PrimitiveFields": {
+                  "fields": {
+                    "aDouble": {
+                      "type": "double",
+                      "id": 1
+                    },
+                    "aFloat": {
+                      "type": "float",
+                      "id": 2
+                    },
+                    "thirtyTwoBitInt": {
+                      "type": "int32",
+                      "id": 3
+                    },
+                    "sixtyFourBitInt": {
+                      "type": "int64",
+                      "id": 4
+                    },
+                    "unsignedThirtyTwoBitInt": {
+                      "type": "uint32",
+                      "id": 5
+                    },
+                    "unsignedSixtyFourBitInt": {
+                      "type": "uint64",
+                      "id": 6
+                    },
+                    "sThirtyTwoBitInt": {
+                      "type": "sint32",
+                      "id": 7
+                    },
+                    "sSixtyFourBitInt": {
+                      "type": "sint64",
+                      "id": 8
+                    },
+                    "fixedThirtyTwoBitInt": {
+                      "type": "fixed32",
+                      "id": 9
+                    },
+                    "fixedSixtyFourBitInt": {
+                      "type": "fixed64",
+                      "id": 10
+                    },
+                    "sFixedThirtyTwoBitInt": {
+                      "type": "sfixed32",
+                      "id": 11
+                    },
+                    "sFixedSixtyFourBitInt": {
+                      "type": "sfixed64",
+                      "id": 12
+                    },
+                    "aBoolean": {
+                      "type": "bool",
+                      "id": 13
+                    },
+                    "aString": {
+                      "type": "string",
+                      "id": 14
+                    },
+                    "bytes": {
+                      "type": "bytes",
+                      "id": 15
+                    }
+                  }
+                },
+                "ExampleMessage": {
+                  "fields": {
+                    "optionalMessage": {
+                      "rule": "repeated",
+                      "type": "string",
+                      "id": 1
+                    },
+                    "aBoolean": {
+                      "rule": "repeated",
+                      "type": "bool",
+                      "id": 2
+                    },
+                    "someNumber": {
+                      "rule": "repeated",
+                      "type": "int32",
+                      "id": 4
+                    },
+                    "someOptions": {
+                      "rule": "repeated",
+                      "type": "SomeOptions",
+                      "id": 5
+                    }
+                  },
+                  "reserved": [[3, 3]]
+                },
+                "SomeOptions": {
+                  "values": {
+                    "UNDEFINED": 0,
+                    "ACCEPTABLE": 1,
+                    "MEDIOCORE": 2,
+                    "STELLAR": 3
+                  }
+                },
+                "OuterMessage": {
+                  "fields": {
+                    "innerMessage": {
+                      "rule": "repeated",
+                      "type": "InnerMessage",
+                      "id": 1
+                    }
+                  }
+                },
+                "InnerMessage": {
+                  "fields": {
+                    "country": {
+                      "type": "Country",
+                      "id": 1
+                    },
+                    "innerInnerMessage": {
+                      "rule": "repeated",
+                      "type": "InnerInnerMessage",
+                      "id": 4
+                    }
+                  }
+                },
+                "InnerInnerMessage": {
+                  "fields": {
+                    "str": {
+                      "type": "string",
+                      "id": 1
+                    },
+                    "int32": {
+                      "type": "int32",
+                      "id": 2
+                    }
+                  }
+                },
+                "Country": {
+                  "values": {
+                    "UNKNOWN": 0,
+                    "USA": 1,
+                    "CANDADA": 2
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
