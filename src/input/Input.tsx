@@ -7,6 +7,7 @@ import { Button, Card, Form } from "antd";
 
 type InputProps = {
   target: string;
+  callback: (m: Message) => void;
 };
 
 function Input(props: InputProps) {
@@ -15,9 +16,7 @@ function Input(props: InputProps) {
     labelCol: { span: 3 },
     wrapperCol: { span: 24 },
     onFinish: (fromForm: any) => {
-      const message = parseToProto(protobufRoot, props.target, fromForm);
-      console.log("Parsed Result: ");
-      console.log(message.toJSON());
+      props.callback(parseToProto(protobufRoot, props.target, fromForm));
     },
   };
   const messageFieldProps = {
@@ -30,10 +29,14 @@ function Input(props: InputProps) {
   };
   return (
     <Card title={"Input for " + props.target} className="protostore-input">
-      <Form {...formProps}>
+      <Form {...formProps} data-testid="protostore-input">
         <MessageField {...messageFieldProps} />
         <Form.Item {...tailProps}>
-          <Button type="primary" htmlType="submit">
+          <Button
+            type="primary"
+            htmlType="submit"
+            data-testid="protostore-submit"
+          >
             Save
           </Button>
         </Form.Item>

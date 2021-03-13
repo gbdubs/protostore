@@ -33,18 +33,20 @@ function MessageField(messageFieldProps: MessageFieldProps) {
       : [];
     const namePath = [...namePathPrefix, field.name];
     fieldsToRender.push(
-      renderField(namePath, field, messageFieldProps.protobufRoot)
+      renderField(i, namePath, field, messageFieldProps.protobufRoot)
     );
   }
   return <>{fieldsToRender}</>;
 }
 
 function renderField(
+  index: string,
   namePath: NamePath,
   field: Field,
   protobufRoot: Root
 ): JSX.Element {
   const itemProps: FieldProps = {
+    key: index,
     label: field.name,
     namePath: namePath,
     repeated: field.repeated,

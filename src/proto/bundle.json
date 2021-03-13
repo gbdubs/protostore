@@ -6,6 +6,47 @@
           "nested": {
             "protostore": {
               "nested": {
+                "OuterMessage": {
+                  "fields": {
+                    "innerMessage": {
+                      "rule": "repeated",
+                      "type": "InnerMessage",
+                      "id": 1
+                    }
+                  }
+                },
+                "InnerMessage": {
+                  "fields": {
+                    "country": {
+                      "type": "Country",
+                      "id": 1
+                    },
+                    "innerInnerMessage": {
+                      "rule": "repeated",
+                      "type": "InnerInnerMessage",
+                      "id": 4
+                    }
+                  }
+                },
+                "InnerInnerMessage": {
+                  "fields": {
+                    "str": {
+                      "type": "string",
+                      "id": 1
+                    },
+                    "int32": {
+                      "type": "int32",
+                      "id": 2
+                    }
+                  }
+                },
+                "Country": {
+                  "values": {
+                    "UNKNOWN": 0,
+                    "USA": 1,
+                    "CANDADA": 2
+                  }
+                },
                 "PrimitiveFields": {
                   "fields": {
                     "aDouble": {
@@ -103,45 +144,36 @@
                     "STELLAR": 3
                   }
                 },
-                "OuterMessage": {
-                  "fields": {
-                    "innerMessage": {
-                      "rule": "repeated",
-                      "type": "InnerMessage",
-                      "id": 1
+                "input": {
+                  "nested": {
+                    "test": {
+                      "nested": {
+                        "EnumField": {
+                          "values": {
+                            "UNKNOWN": 0,
+                            "RED": 1,
+                            "YELLOW": 2,
+                            "GREEN": 3
+                          }
+                        },
+                        "OptionalSimpleFields": {
+                          "fields": {
+                            "stringField": {
+                              "type": "string",
+                              "id": 1
+                            },
+                            "int_32Field": {
+                              "type": "int32",
+                              "id": 2
+                            },
+                            "enumField": {
+                              "type": "EnumField",
+                              "id": 3
+                            }
+                          }
+                        }
+                      }
                     }
-                  }
-                },
-                "InnerMessage": {
-                  "fields": {
-                    "country": {
-                      "type": "Country",
-                      "id": 1
-                    },
-                    "innerInnerMessage": {
-                      "rule": "repeated",
-                      "type": "InnerInnerMessage",
-                      "id": 4
-                    }
-                  }
-                },
-                "InnerInnerMessage": {
-                  "fields": {
-                    "str": {
-                      "type": "string",
-                      "id": 1
-                    },
-                    "int32": {
-                      "type": "int32",
-                      "id": 2
-                    }
-                  }
-                },
-                "Country": {
-                  "values": {
-                    "UNKNOWN": 0,
-                    "USA": 1,
-                    "CANDADA": 2
                   }
                 }
               }

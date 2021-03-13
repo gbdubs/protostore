@@ -41,6 +41,9 @@ class OptionalField<T extends FieldProps> extends React.Component<
             onClick={() => this.setState({ set: false })}
             icon={<DeleteOutlined />}
             className="protostore-input-delete-btn"
+            data-testid={
+              OptionalField.testId_delete + this.props.fieldProps.namePath
+            }
           />
         </Form.Item>
       );
@@ -52,6 +55,9 @@ class OptionalField<T extends FieldProps> extends React.Component<
             onClick={() => this.setState({ set: true })}
             icon={<PlusOutlined />}
             block={true}
+            data-testid={
+              OptionalField.testId_set + this.props.fieldProps.namePath
+            }
           >
             {"Set " + this.props.fieldProps.label}
           </Button>
@@ -59,6 +65,9 @@ class OptionalField<T extends FieldProps> extends React.Component<
       );
     }
   }
+
+  static testId_set = "protostore-input-field-optional-set:";
+  static testId_delete = "protostore-input-field-optional-delete:";
 }
 
 export default OptionalField;

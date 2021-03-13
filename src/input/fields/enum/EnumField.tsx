@@ -21,7 +21,13 @@ class EnumField extends BasicField<EnumFieldProps> {
       options.push(<Select.Option value={option}>{option}</Select.Option>);
     }
     return (
-      <Select showSearch className="protostore-input-field-enum-input">
+      <Select
+        showSearch
+        className="protostore-input-field-enum-input"
+        data-testid={
+          "protostore-input-field-enum-select:" + fieldProps.namePath
+        }
+      >
         {options}
       </Select>
     );

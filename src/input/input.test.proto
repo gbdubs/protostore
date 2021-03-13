@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package com.gradybward.protostore.input.test;
+
+enum EnumField {
+  UNKNOWN = 0;
+  RED = 1;
+  YELLOW = 2;
+  GREEN = 3;
+}
+
+message OptionalSimpleFields {
+  string string_field = 1;
+  int32 int_32_field = 2;
+  EnumField enum_field = 3;
+}

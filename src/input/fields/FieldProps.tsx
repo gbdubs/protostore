@@ -1,6 +1,7 @@
 import { NamePath } from "./NamePath";
 
 export interface FieldProps {
+  key: string;
   // the path to the field ["outer_message", "inner_message", "repeated_field", "0"]
   namePath: NamePath;
   // The name of the field.
