@@ -10,7 +10,7 @@ class Int32Field extends BasicField<FieldProps> {
     return (
       <InputNumber
         className="protostore-input-field-int32-input"
-        data-testid={Int32Field.testId + fieldProps.namePath}
+        data-testid={Int32Field.testId + fieldProps.path}
       />
     );
   }

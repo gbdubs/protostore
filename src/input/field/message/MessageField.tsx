@@ -16,7 +16,8 @@ import { Field, Root } from "protobufjs";
 type MessageFieldProps = {
   protobufRoot: Root;
   target: string;
-  namePath?: NamePath;
+  path?: NamePath;
+  name?: NamePath;
 };
 
 function MessageField(messageFieldProps: MessageFieldProps) {
@@ -28,12 +29,16 @@ function MessageField(messageFieldProps: MessageFieldProps) {
   const fieldsToRender: JSX.Element[] = [];
   for (let i in fields) {
     const field = fields[i];
-    const namePathPrefix = messageFieldProps.namePath
-      ? messageFieldProps.namePath
+    const namePrefix = messageFieldProps.name
+      ? messageFieldProps.name
       : [];
-    const namePath = [...namePathPrefix, field.name];
+    const name = [...namePrefix, field.name];
+    const pathPrefix = messageFieldProps.path
+      ? messageFieldProps.path
+      : [];
+    const path = [...pathPrefix, field.name];
     fieldsToRender.push(
-      renderField(i, namePath, field, messageFieldProps.protobufRoot)
+      renderField(i, name, path, field, messageFieldProps.protobufRoot)
     );
   }
   return <>{fieldsToRender}</>;
@@ -41,27 +46,29 @@ function MessageField(messageFieldProps: MessageFieldProps) {
 
 function renderField(
   index: string,
-  namePath: NamePath,
+  path: NamePath,
+  name: NamePath,
   field: Field,
   protobufRoot: Root
 ): JSX.Element {
   const itemProps: FieldProps = {
-    key: index,
     label: field.name,
-    namePath: namePath,
+    name: name,
+    path: path,
     repeated: field.repeated,
     nested: false,
   };
   if (field.type === "string") {
-    return <StringField {...itemProps} />;
+    return <StringField {...itemProps} key={index} />;
   } else if (field.type === "int32") {
-    return <Int32Field {...itemProps} />;
+    return <Int32Field {...itemProps} key={index} />;
   } else if (isEnum(protobufRoot, field.type)) {
     return (
       <EnumField
         {...itemProps}
         target={field.type}
         protobufRoot={protobufRoot}
+        key={index}
       />
     );
   } else if (isNestedMessage(protobufRoot, field.type)) {
@@ -73,14 +80,15 @@ function renderField(
       >
         <MessageField
           target={field.type}
-          namePath={fps.namePath}
+          name={fps.name}
+          path={fps.path}
           protobufRoot={protobufRoot}
         />
       </Card>
     );
 
     return (
-      <div className="nested-message-wrapper">
+      <div className="nested-message-wrapper" key={index}>
         {field.repeated ? (
           <RepeatedField fieldProps={itemProps} inputFn={fn} />
         ) : (
@@ -89,7 +97,7 @@ function renderField(
       </div>
     );
   } else {
-    return <p> Unsupported Type: {field.type} </p>;
+    return <p key={index}> Unsupported Type: {field.type} </p>;
   }
 }
 

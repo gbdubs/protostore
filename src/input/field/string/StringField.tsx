@@ -9,13 +9,14 @@ const { TextArea } = Input;
 class StringField extends BasicField<FieldProps> {
   createField(fieldProps: FieldProps): JSX.Element {
     return (
-      <TextArea 
-          autoSize 
-          className="protostore-input-field-string-input" 
-          data-testid={ StringField.testId + fieldProps.namePath } />
+      <TextArea
+        autoSize
+        className="protostore-input-field-string-input"
+        data-testid={StringField.testId + fieldProps.path}
+      />
     );
   }
-  
+
   static testId = "protostore-input-field-string:";
 }
 

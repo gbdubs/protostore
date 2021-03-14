@@ -20,7 +20,7 @@ class RepeatedField<T extends FieldProps> extends React.Component<
         label={this.props.fieldProps.label}
         className="repeated-field-item-wrapper"
       >
-        <Form.List name={this.props.fieldProps.namePath}>
+        <Form.List name={this.props.fieldProps.name}>
           {(fields, { add, remove }, { errors }) => (
             <>
               {fields.map((field, index) => {
@@ -28,15 +28,21 @@ class RepeatedField<T extends FieldProps> extends React.Component<
                   {},
                   this.props.fieldProps
                 );
-                modifiedFieldProps.namePath = [index];
+                // Also probably a bad line here for the repeated nested case.
+                modifiedFieldProps.name = [index];
+                modifiedFieldProps.path = [...this.props.fieldProps.path, index];
                 modifiedFieldProps.repeated = false;
                 return (
                   <div key={field.key} className="repeated-field-item">
-                    {this.props.inputFn(modifiedFieldProps)}
+                    {/* This right here is the line that needs modification for repeated */}
+                    <Form.Item name={modifiedFieldProps.name} noStyle isListField>
+                      {this.props.inputFn(modifiedFieldProps)}
+                    </Form.Item>
                     <Button
                       className="protostore-input-delete-btn"
                       icon={<DeleteOutlined />}
                       onClick={() => remove(field.name)}
+                      data-testid={RepeatedField.testId_delete + modifiedFieldProps.path}
                     />
                   </div>
                 );
@@ -46,6 +52,9 @@ class RepeatedField<T extends FieldProps> extends React.Component<
                   type="dashed"
                   onClick={() => add()}
                   icon={<PlusOutlined />}
+                  data-testid={
+                    RepeatedField.testId_add + this.props.fieldProps.path
+                  }
                 >
                   {"Add " + this.props.fieldProps.label}
                 </Button>
@@ -57,6 +66,10 @@ class RepeatedField<T extends FieldProps> extends React.Component<
       </Form.Item>
     );
   }
+
+  static testId_add = "protostore-input-field-repeated-add:";
+  static testId_item = "protostore-input-field-repeated-item:";
+  static testId_delete = "protostore-input-field-repeated-delete:";
 }
 
 export default RepeatedField;

@@ -134,12 +134,7 @@
                       "id": 5
                     }
                   },
-                  "reserved": [
-                    [
-                      3,
-                      3
-                    ]
-                  ]
+                  "reserved": [[3, 3]]
                 },
                 "SomeOptions": {
                   "values": {
@@ -167,9 +162,18 @@
                         },
                         "string": {
                           "nested": {
-                            "TestFieldString": {
+                            "TestFieldOptionalString": {
                               "fields": {
                                 "myString": {
+                                  "type": "string",
+                                  "id": 1
+                                }
+                              }
+                            },
+                            "TestFieldRepeatedString": {
+                              "fields": {
+                                "myString": {
+                                  "rule": "repeated",
                                   "type": "string",
                                   "id": 1
                                 }

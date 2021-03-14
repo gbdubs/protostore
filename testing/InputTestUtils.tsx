@@ -22,23 +22,33 @@ export class InputTestClassHelper {
     this.originalError = console.error;
     this.originalWarn = console.warn;
     this.originalLog = console.log;
-    this.excludedMessages = [
-    
-    ];
+    this.excludedMessages = ["inside a test was not wrapped in act"];
   }
-  handleLog(log: (t?: any, ...p: any[]) => void, template: string, ...optionalParams: any[]): void {
-    if (!this.excludedMessages.some((excludedMessage) => template.includes(excludedMessage))) {
+  handleLog(
+    log: (t?: any, ...p: any[]) => void,
+    template: string,
+    ...optionalParams: any[]
+  ): void {
+    if (
+      !this.excludedMessages.some((excludedMessage) =>
+        template.includes(excludedMessage)
+      )
+    ) {
       log(template, optionalParams);
     }
   }
   doBeforeAll(): void {
-    console.error = (t: string, ...p: any[]) => this.handleLog(this.originalError, t, p);
-    console.warn = (t: string, ...p: any[]) => this.handleLog(this.originalError, t, p);
-    console.log = (t: string, ...p: any[]) => this.handleLog(this.originalError, t, p);
+    console.error = (t: string, ...p: any[]) =>
+      this.handleLog(this.originalError, t, p);
+    console.warn = (t: string, ...p: any[]) =>
+      this.handleLog(this.originalWarn, t, p);
+    console.log = (t: string, ...p: any[]) =>
+      this.handleLog(this.originalLog, t, p);
   }
   doBeforeEach(): void {
     global.matchMedia =
-      global.matchMedia || function () {
+      global.matchMedia ||
+      function () {
         return {
           matches: false,
           onchange: null,
@@ -58,13 +68,13 @@ export class InputTestClassHelper {
     console.log = this.originalLog;
   }
   addAllSetupAndTearDowns(): void {
-    beforeAll(this.doBeforeAll);
-    beforeEach(this.doBeforeEach);
-    afterEach(this.doAfterEach);
-    afterAll(this.doAfterAll);
+    const helper = this;
+    beforeAll(() => helper.doBeforeAll());
+    beforeEach(() => helper.doBeforeEach());
+    afterEach(() => helper.doAfterEach());
+    afterAll(() => helper.doAfterAll());
   }
 }
-
 
 export class InputTestCaseHelper {
   mockCallback: SinonSpy<any[], any>;
@@ -77,16 +87,29 @@ export class InputTestCaseHelper {
     );
   }
 
-  click(type: string, testId: string) {
-    const selector = type + '[data-testid="' + testId + '"]';
-    this.component.find(selector).simulate("click");
+  static _clickableTypes = ["button", "a", "icon"];
+
+  click(testId: string) {
+    const selector = "[data-testid='" + testId + "']";
+    const filter = (rw: ReactWrapper) =>
+      InputTestCaseHelper._clickableTypes.includes(rw.name());
+    const results =     this.component.find(selector).filterWhere(filter);
+    if (results.length != 1) {
+      throw new Error(`Wanted exactly 1 node, found ${results.length} for selector ${selector}`)
+    }
+    results.simulate("click");
   }
 
-  setValue(type: string, testId: string, value: any) {
-    const selector = type + '[data-testid="' + testId + '"]';
-    this.component
-      .find(selector)
-      .simulate("change", { target: { value: value } });
+  static _settableTypes = ["input", "textarea"];
+  setValue(testId: string, value: any) {
+    const selector = "[data-testid='" + testId + "']";
+    const filter = (rw: ReactWrapper) =>
+      InputTestCaseHelper._settableTypes.includes(rw.name());
+    const results = this.component.find(selector).filterWhere(filter);
+    if (results.length != 1) {
+      throw new Error(`Wanted exactly 1 node, found ${results.length} for selector ${selector}`)
+    }
+    results.simulate("change", { target: { value: value } });
   }
 
   async submit(): Promise<Message> {
