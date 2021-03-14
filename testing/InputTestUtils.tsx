@@ -24,26 +24,15 @@ export class InputTestClassHelper {
     this.originalLog = console.log;
     this.excludedMessages = ["inside a test was not wrapped in act"];
   }
-  handleLog(
-    log: (t?: any, ...p: any[]) => void,
-    template: string,
-    ...optionalParams: any[]
-  ): void {
-    if (
-      !this.excludedMessages.some((excludedMessage) =>
-        template.includes(excludedMessage)
-      )
-    ) {
+  handleLog(log: (t?: any, ...p: any[]) => void, template: string, ...optionalParams: any[]): void {
+    if (!this.excludedMessages.some((excludedMessage) => template.includes(excludedMessage))) {
       log(template, optionalParams);
     }
   }
   doBeforeAll(): void {
-    console.error = (t: string, ...p: any[]) =>
-      this.handleLog(this.originalError, t, p);
-    console.warn = (t: string, ...p: any[]) =>
-      this.handleLog(this.originalWarn, t, p);
-    console.log = (t: string, ...p: any[]) =>
-      this.handleLog(this.originalLog, t, p);
+    console.error = (t: string, ...p: any[]) => this.handleLog(this.originalError, t, p);
+    console.warn = (t: string, ...p: any[]) => this.handleLog(this.originalWarn, t, p);
+    console.log = (t: string, ...p: any[]) => this.handleLog(this.originalLog, t, p);
   }
   doBeforeEach(): void {
     global.matchMedia =
@@ -82,20 +71,17 @@ export class InputTestCaseHelper {
 
   constructor(target: string) {
     this.mockCallback = spy();
-    this.component = mount(
-      <Input target={target} callback={this.mockCallback} />
-    );
+    this.component = mount(<Input target={target} callback={this.mockCallback} />);
   }
 
   static _clickableTypes = ["button", "a", "icon"];
 
   click(testId: string) {
     const selector = "[data-testid='" + testId + "']";
-    const filter = (rw: ReactWrapper) =>
-      InputTestCaseHelper._clickableTypes.includes(rw.name());
-    const results =     this.component.find(selector).filterWhere(filter);
+    const filter = (rw: ReactWrapper) => InputTestCaseHelper._clickableTypes.includes(rw.name());
+    const results = this.component.find(selector).filterWhere(filter);
     if (results.length != 1) {
-      throw new Error(`Wanted exactly 1 node, found ${results.length} for selector ${selector}`)
+      throw new Error(`Wanted exactly 1 node, found ${results.length} for selector ${selector}`);
     }
     results.simulate("click");
   }
@@ -103,11 +89,10 @@ export class InputTestCaseHelper {
   static _settableTypes = ["input", "textarea"];
   setValue(testId: string, value: any) {
     const selector = "[data-testid='" + testId + "']";
-    const filter = (rw: ReactWrapper) =>
-      InputTestCaseHelper._settableTypes.includes(rw.name());
+    const filter = (rw: ReactWrapper) => InputTestCaseHelper._settableTypes.includes(rw.name());
     const results = this.component.find(selector).filterWhere(filter);
     if (results.length != 1) {
-      throw new Error(`Wanted exactly 1 node, found ${results.length} for selector ${selector}`)
+      throw new Error(`Wanted exactly 1 node, found ${results.length} for selector ${selector}`);
     }
     results.simulate("change", { target: { value: value } });
   }

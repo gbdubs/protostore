@@ -13,14 +13,13 @@ interface EnumFieldProps extends FieldProps {
 
 class EnumField extends BasicField<EnumFieldProps> {
   createField(fieldProps: EnumFieldProps): JSX.Element {
-    const optionsMap = fieldProps.protobufRoot.lookupEnum(fieldProps.target)
-      .valuesById;
+    const optionsMap = fieldProps.protobufRoot.lookupEnum(fieldProps.target).valuesById;
     const options = [];
     for (let i in optionsMap) {
       const option = optionsMap[i];
       const testId = EnumField.testId_option + fieldProps.path + ":" + option;
       options.push(
-        <Select.Option key={i} value={option} data-testid={testId}> 
+        <Select.Option key={i} value={option} data-testid={testId}>
           {option}
         </Select.Option>
       );

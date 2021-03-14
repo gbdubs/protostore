@@ -28,9 +28,7 @@ class OptionalField<T extends FieldProps> extends React.Component<
 
   render() {
     if (this.state.set) {
-      const name = this.props.fieldProps.nested
-        ? undefined
-        : this.props.fieldProps.name;
+      const name = this.props.fieldProps.nested ? undefined : this.props.fieldProps.name;
       return (
         <Form.Item label={this.props.fieldProps.label} labelCol={{ span: 3 }}>
           <Form.Item name={name} noStyle>
@@ -41,9 +39,7 @@ class OptionalField<T extends FieldProps> extends React.Component<
             onClick={() => this.setState({ set: false })}
             icon={<DeleteOutlined />}
             className="protostore-input-delete-btn"
-            data-testid={
-              OptionalField.testId_delete + this.props.fieldProps.path
-            }
+            data-testid={OptionalField.testId_delete + this.props.fieldProps.path}
           />
         </Form.Item>
       );
@@ -55,9 +51,7 @@ class OptionalField<T extends FieldProps> extends React.Component<
             onClick={() => this.setState({ set: true })}
             icon={<PlusOutlined />}
             block={true}
-            data-testid={
-              OptionalField.testId_set + this.props.fieldProps.path
-            }
+            data-testid={OptionalField.testId_set + this.props.fieldProps.path}
           >
             {"Set " + this.props.fieldProps.label}
           </Button>

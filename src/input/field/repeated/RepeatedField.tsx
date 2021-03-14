@@ -11,23 +11,15 @@ interface RepeatedFieldProps<T extends FieldProps> {
   inputFn: (fp: T) => JSX.Element;
 }
 
-class RepeatedField<T extends FieldProps> extends React.Component<
-  RepeatedFieldProps<T>
-> {
+class RepeatedField<T extends FieldProps> extends React.Component<RepeatedFieldProps<T>> {
   render() {
     return (
-      <Form.Item
-        label={this.props.fieldProps.label}
-        className="repeated-field-item-wrapper"
-      >
+      <Form.Item label={this.props.fieldProps.label} className="repeated-field-item-wrapper">
         <Form.List name={this.props.fieldProps.name}>
           {(fields, { add, remove }, { errors }) => (
             <>
               {fields.map((field, index) => {
-                const modifiedFieldProps = Object.assign(
-                  {},
-                  this.props.fieldProps
-                );
+                const modifiedFieldProps = Object.assign({}, this.props.fieldProps);
                 // Also probably a bad line here for the repeated nested case.
                 modifiedFieldProps.name = [index];
                 modifiedFieldProps.path = [...this.props.fieldProps.path, index];
@@ -52,9 +44,7 @@ class RepeatedField<T extends FieldProps> extends React.Component<
                   type="dashed"
                   onClick={() => add()}
                   icon={<PlusOutlined />}
-                  data-testid={
-                    RepeatedField.testId_add + this.props.fieldProps.path
-                  }
+                  data-testid={RepeatedField.testId_add + this.props.fieldProps.path}
                 >
                   {"Add " + this.props.fieldProps.label}
                 </Button>

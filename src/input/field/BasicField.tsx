@@ -12,9 +12,7 @@ class BasicField<T extends FieldProps> extends React.Component<T, {}> {
 
   render() {
     if (this.props.repeated) {
-      return (
-        <RepeatedField fieldProps={this.props} inputFn={this.createField} />
-      );
+      return <RepeatedField fieldProps={this.props} inputFn={this.createField} />;
     }
     return <OptionalField fieldProps={this.props} inputFn={this.createField} />;
   }

@@ -32,11 +32,7 @@ function Input(props: InputProps) {
       <Form {...formProps} data-testid="protostore-input">
         <MessageField {...messageFieldProps} />
         <Form.Item {...tailProps}>
-          <Button
-            type="primary"
-            htmlType="submit"
-            data-testid="protostore-submit"
-          >
+          <Button type="primary" htmlType="submit" data-testid="protostore-submit">
             Save
           </Button>
         </Form.Item>
@@ -45,11 +41,7 @@ function Input(props: InputProps) {
   );
 }
 
-function parseToProto(
-  protobufRoot: Root,
-  target: string,
-  fromForm: any
-): Message {
+function parseToProto(protobufRoot: Root, target: string, fromForm: any): Message {
   const TargetMessageType = protobufRoot.lookupType(target);
   const properties: any = {};
   for (let key in fromForm) {

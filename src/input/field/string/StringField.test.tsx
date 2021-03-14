@@ -12,17 +12,13 @@ import Input from "../../Input";
 import StringField from "./StringField";
 import OptionalField from "../optional/OptionalField";
 import RepeatedField from "../repeated/RepeatedField";
-import {
-  InputTestClassHelper,
-  InputTestCaseHelper,
-} from "../../../../testing/InputTestUtils";
+import { InputTestClassHelper, InputTestCaseHelper } from "../../../../testing/InputTestUtils";
 
 configure({ adapter: new Adapter() });
 
 describe("Optional String", () => {
   new InputTestClassHelper().addAllSetupAndTearDowns();
-  const protobufTarget =
-    "com.gradybward.protostore.input.field.string.TestFieldOptionalString";
+  const protobufTarget = "com.gradybward.protostore.input.field.string.TestFieldOptionalString";
   const protobufType = Root.fromJSON(compiledProtobufBundle).lookupType(protobufTarget);
   const fieldName = "myString";
   const fieldValue = "Covfefe";
@@ -35,10 +31,10 @@ describe("Optional String", () => {
     const expected: any = {};
     expect(actual).toEqual(protobufType.create(expected));
   });
-  
+
   test("field is empty", async () => {
     const component = new InputTestCaseHelper(protobufTarget);
-    
+
     component.click(OptionalField.testId_set + fieldName);
     const actual = await component.submit();
 
@@ -49,7 +45,7 @@ describe("Optional String", () => {
 
   test("field is set", async () => {
     const component = new InputTestCaseHelper(protobufTarget);
-  
+
     component.click(OptionalField.testId_set + fieldName);
     component.setValue(StringField.testId + fieldName, fieldValue);
     const actual = await component.submit();
@@ -61,7 +57,7 @@ describe("Optional String", () => {
 
   test("delete button works", async () => {
     const component = new InputTestCaseHelper(protobufTarget);
-    
+
     component.click(OptionalField.testId_set + fieldName);
     component.setValue(StringField.testId + fieldName, fieldValue);
     component.click(OptionalField.testId_delete + fieldName);
@@ -70,10 +66,10 @@ describe("Optional String", () => {
     const expected: any = {};
     expect(actual).toEqual(protobufType.create(expected));
   });
-  
+
   test("delete button clears the content", async () => {
     const component = new InputTestCaseHelper(protobufTarget);
-    
+
     component.click(OptionalField.testId_set + fieldName);
     component.setValue(StringField.testId + fieldName, fieldValue);
     component.click(OptionalField.testId_delete + fieldName);
@@ -99,7 +95,7 @@ describe("Repeated String", () => {
 
     expect(actual).toEqual(protobufType.create({}));
   });
-  
+
   test("empty elements are included", async () => {
     const component = new InputTestCaseHelper(protobufTarget);
 
@@ -118,7 +114,7 @@ describe("Repeated String", () => {
   test("field has one value", async () => {
     const value = "Guadalajara";
     const component = new InputTestCaseHelper(protobufTarget);
-    
+
     component.click(RepeatedField.testId_add + fieldName);
     component.setValue(StringField.testId + fieldName + ",0", value);
     const actual = await component.submit();
@@ -127,12 +123,12 @@ describe("Repeated String", () => {
     expected[fieldName] = [value];
     expect(actual).toEqual(protobufType.create(expected));
   });
-  
+
   test("field has multiple values", async () => {
     const value0 = "Guadalajara";
     const value1 = "TippyTaps";
     const component = new InputTestCaseHelper(protobufTarget);
-    
+
     component.click(RepeatedField.testId_add + fieldName);
     component.click(RepeatedField.testId_add + fieldName);
     component.setValue(StringField.testId + fieldName + ",1", value1);
@@ -143,13 +139,13 @@ describe("Repeated String", () => {
     expected[fieldName] = [value0, value1];
     expect(actual).toEqual(protobufType.create(expected));
   });
-  
+
   test("delete button works", async () => {
     const value0 = "I";
     const value1 = "Don't";
     const value2 = "Love Guaddo with all of my heart";
     const component = new InputTestCaseHelper(protobufTarget);
-    
+
     component.click(RepeatedField.testId_add + fieldName);
     component.setValue(StringField.testId + fieldName + ",0", value0);
     component.click(RepeatedField.testId_add + fieldName);
@@ -163,11 +159,11 @@ describe("Repeated String", () => {
     expected[fieldName] = [value0, value2];
     expect(actual).toEqual(protobufType.create(expected));
   });
-  
+
   test("deleted content is cleared", async () => {
     const value = "Negative Energy";
     const component = new InputTestCaseHelper(protobufTarget);
-    
+
     component.click(RepeatedField.testId_add + fieldName);
     component.setValue(StringField.testId + fieldName + ",0", value);
     component.click(RepeatedField.testId_delete + fieldName + ",0");
@@ -178,12 +174,12 @@ describe("Repeated String", () => {
     expected[fieldName] = [undefined];
     expect(actual).toEqual(protobufType.create(expected));
   });
-  
+
   test("change content retains later values", async () => {
     const oldValue = "Donald Trump is the President of the US";
     const newValue = "Joe Biden is the President of the US";
     const component = new InputTestCaseHelper(protobufTarget);
-    
+
     component.click(RepeatedField.testId_add + fieldName);
     component.setValue(StringField.testId + fieldName + ",0", oldValue);
     component.setValue(StringField.testId + fieldName + ",0", newValue);
@@ -194,4 +190,3 @@ describe("Repeated String", () => {
     expect(actual).toEqual(protobufType.create(expected));
   });
 });
-

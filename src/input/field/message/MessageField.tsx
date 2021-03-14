@@ -21,25 +21,17 @@ type MessageFieldProps = {
 };
 
 function MessageField(messageFieldProps: MessageFieldProps) {
-  const TargetMessage = messageFieldProps.protobufRoot.lookupType(
-    messageFieldProps.target
-  );
+  const TargetMessage = messageFieldProps.protobufRoot.lookupType(messageFieldProps.target);
 
   const fields = TargetMessage.fieldsArray;
   const fieldsToRender: JSX.Element[] = [];
   for (let i in fields) {
     const field = fields[i];
-    const namePrefix = messageFieldProps.name
-      ? messageFieldProps.name
-      : [];
+    const namePrefix = messageFieldProps.name ? messageFieldProps.name : [];
     const name = [...namePrefix, field.name];
-    const pathPrefix = messageFieldProps.path
-      ? messageFieldProps.path
-      : [];
+    const pathPrefix = messageFieldProps.path ? messageFieldProps.path : [];
     const path = [...pathPrefix, field.name];
-    fieldsToRender.push(
-      renderField(i, name, path, field, messageFieldProps.protobufRoot)
-    );
+    fieldsToRender.push(renderField(i, name, path, field, messageFieldProps.protobufRoot));
   }
   return <>{fieldsToRender}</>;
 }
@@ -63,21 +55,11 @@ function renderField(
   } else if (field.type === "int32") {
     return <Int32Field {...itemProps} key={index} />;
   } else if (isEnum(protobufRoot, field.type)) {
-    return (
-      <EnumField
-        {...itemProps}
-        target={field.type}
-        protobufRoot={protobufRoot}
-        key={index}
-      />
-    );
+    return <EnumField {...itemProps} target={field.type} protobufRoot={protobufRoot} key={index} />;
   } else if (isNestedMessage(protobufRoot, field.type)) {
     itemProps.nested = true;
     const fn = (fps: FieldProps) => (
-      <Card
-        type="inner"
-        className="protostore-input-field-message-nested-message-card"
-      >
+      <Card type="inner" className="protostore-input-field-message-nested-message-card">
         <MessageField
           target={field.type}
           name={fps.name}

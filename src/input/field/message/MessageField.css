@@ -6,8 +6,6 @@
 .protostore-input-field-message-nested-message-card
   > .ant-card-body
   > .protostore-input-optional-omitted-wrapper:last-of-type,
-.protostore-input-field-message-nested-message-card
-  > .ant-card-body
-  > .ant-form-item:last-of-type {
+.protostore-input-field-message-nested-message-card > .ant-card-body > .ant-form-item:last-of-type {
   margin-bottom: 0;
 }
