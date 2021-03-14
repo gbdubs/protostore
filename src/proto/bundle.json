@@ -150,9 +150,18 @@
                       "nested": {
                         "int32": {
                           "nested": {
-                            "TestFieldInt32": {
+                            "TestFieldInt32Optional": {
                               "fields": {
                                 "myNumber": {
+                                  "type": "int32",
+                                  "id": 1
+                                }
+                              }
+                            },
+                            "TestFieldInt32Repeated": {
+                              "fields": {
+                                "myNumbers": {
+                                  "rule": "repeated",
                                   "type": "int32",
                                   "id": 1
                                 }
@@ -162,7 +171,7 @@
                         },
                         "string": {
                           "nested": {
-                            "TestFieldOptionalString": {
+                            "TestFieldStringOptional": {
                               "fields": {
                                 "myString": {
                                   "type": "string",
@@ -170,9 +179,9 @@
                                 }
                               }
                             },
-                            "TestFieldRepeatedString": {
+                            "TestFieldStringRepeated": {
                               "fields": {
-                                "myString": {
+                                "myStrangz": {
                                   "rule": "repeated",
                                   "type": "string",
                                   "id": 1

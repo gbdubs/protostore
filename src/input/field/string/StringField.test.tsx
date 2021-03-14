@@ -18,7 +18,7 @@ configure({ adapter: new Adapter() });
 
 describe("Optional String", () => {
   new InputTestClassHelper().addAllSetupAndTearDowns();
-  const protobufTarget = "com.gradybward.protostore.input.field.string.TestFieldOptionalString";
+  const protobufTarget = "com.gradybward.protostore.input.field.string.TestFieldStringOptional";
   const protobufType = Root.fromJSON(compiledProtobufBundle).lookupType(protobufTarget);
   const fieldName = "myString";
   const fieldValue = "Covfefe";
@@ -84,9 +84,9 @@ describe("Optional String", () => {
 
 describe("Repeated String", () => {
   new InputTestClassHelper().addAllSetupAndTearDowns();
-  const protobufTarget = "com.gradybward.protostore.input.field.string.TestFieldRepeatedString";
+  const protobufTarget = "com.gradybward.protostore.input.field.string.TestFieldStringRepeated";
   const protobufType = Root.fromJSON(compiledProtobufBundle).lookupType(protobufTarget);
-  const fieldName = "myString";
+  const fieldName = "myStrangz";
 
   test("field is empty", async () => {
     const component = new InputTestCaseHelper(protobufTarget);

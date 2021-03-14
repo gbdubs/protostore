@@ -2,10 +2,10 @@ syntax = "proto3";
 
 package com.gradybward.protostore.input.field.string;
 
-message TestFieldOptionalString {
+message TestFieldStringOptional {
   string my_string = 1;
 }
 
-message TestFieldRepeatedString {
-  repeated string my_string = 1;
+message TestFieldStringRepeated {
+  repeated string my_strangz = 1;
 }

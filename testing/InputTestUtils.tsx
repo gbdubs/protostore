@@ -94,7 +94,7 @@ export class InputTestCaseHelper {
     if (results.length != 1) {
       throw new Error(`Wanted exactly 1 node, found ${results.length} for selector ${selector}`);
     }
-    results.simulate("change", { target: { value: value } });
+    results.simulate("change", { target: { value: "" + value } });
   }
 
   async submit(): Promise<Message> {

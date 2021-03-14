@@ -4,7 +4,7 @@ import { FieldProps } from "../FieldProps";
 
 import { Button, Form } from "antd";
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
-import React from "react";
+import React, { useState } from "react";
 
 interface OptionalFieldProps<T extends FieldProps> {
   fieldProps: T;
@@ -31,7 +31,7 @@ class OptionalField<T extends FieldProps> extends React.Component<
       const name = this.props.fieldProps.nested ? undefined : this.props.fieldProps.name;
       return (
         <Form.Item label={this.props.fieldProps.label} labelCol={{ span: 3 }}>
-          <Form.Item name={name} noStyle>
+          <Form.Item preserve={false} name={name} noStyle>
             {this.props.inputFn(this.props.fieldProps)}
           </Form.Item>
           <Button

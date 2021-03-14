@@ -4,7 +4,7 @@ import "./index.css";
 import Input from "./input/Input";
 
 const inputProps = {
-  target: "com.gradybward.protostore.input.field.string.TestFieldRepeatedString",
+  target: "com.gradybward.protostore.input.field.string.TestFieldStringOptional",
   callback: console.log,
 };
 
