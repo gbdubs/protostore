@@ -151,35 +151,7 @@
                 },
                 "input": {
                   "nested": {
-                    "test": {
-                      "nested": {
-                        "EnumField": {
-                          "values": {
-                            "UNKNOWN": 0,
-                            "RED": 1,
-                            "YELLOW": 2,
-                            "GREEN": 3
-                          }
-                        },
-                        "OptionalSimpleFields": {
-                          "fields": {
-                            "stringField": {
-                              "type": "string",
-                              "id": 1
-                            },
-                            "int_32Field": {
-                              "type": "int32",
-                              "id": 2
-                            },
-                            "enumField": {
-                              "type": "EnumField",
-                              "id": 3
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "fields": {
+                    "field": {
                       "nested": {
                         "int32": {
                           "nested": {

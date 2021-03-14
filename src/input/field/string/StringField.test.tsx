@@ -17,7 +17,7 @@ configure({ adapter: new Adapter() });
 
 describe("Optional String", () => {
   new InputTestClassHelper().addAllSetupAndTearDowns();
-  const protobufTarget = "com.gradybward.protostore.input.fields.string.TestFieldString";
+  const protobufTarget = "com.gradybward.protostore.input.field.string.TestFieldString";
   const protobufType = Root.fromJSON(compiledProtobufBundle).lookupType(protobufTarget);
 
   test("field is empty", async () => {

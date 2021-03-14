@@ -69,7 +69,7 @@ function renderField(
     const fn = (fps: FieldProps) => (
       <Card
         type="inner"
-        className="protostore-input-fields-message-nested-message-card"
+        className="protostore-input-field-message-nested-message-card"
       >
         <MessageField
           target={field.type}

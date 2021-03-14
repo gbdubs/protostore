@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package com.gradybward.protostore.input.fields.int32;
+package com.gradybward.protostore.input.field.int32;
 
 message TestFieldInt32 {
   int32 my_number = 1;

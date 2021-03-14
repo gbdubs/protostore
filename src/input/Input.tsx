@@ -2,7 +2,7 @@ import "./Input.css";
 import React from "react";
 import { Root, Message } from "protobufjs";
 import { default as compiledProtobufBundle } from "../proto/bundle.json";
-import MessageField from "./fields/message/MessageField";
+import MessageField from "./field/message/MessageField";
 import { Button, Card, Form } from "antd";
 
 type InputProps = {
