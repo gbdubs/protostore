@@ -4,7 +4,7 @@ import "./index.css";
 import Input from "./input/Input";
 
 const inputProps = {
-  target: "com.gradybward.protostore.input.test.TopLevelFields",
+  target: "com.gradybward.protostore.input.test.OptionalSimpleFields",
   callback: console.log,
 };
 

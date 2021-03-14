@@ -18,20 +18,24 @@ class EnumField extends BasicField<EnumFieldProps> {
     const options = [];
     for (let i in optionsMap) {
       const option = optionsMap[i];
-      options.push(<Select.Option value={option}>{option}</Select.Option>);
+      const testId = EnumField.testId_option + fieldProps.namePath + ":" + option;
+      options.push(<Select.Option 
+          key={i} 
+          value={option} 
+          data-testid={ testId }>{option}</Select.Option>);
     }
     return (
       <Select
         showSearch
         className="protostore-input-field-enum-input"
-        data-testid={
-          "protostore-input-field-enum-select:" + fieldProps.namePath
-        }
+        data-testid={ EnumField.testId_select + fieldProps.namePath }
       >
         {options}
       </Select>
     );
   }
+  static testId_select = "protostore-input-field-enum-select:";
+  static testId_option = "protostore-input-field-enum-option:";
 }
 
 export default EnumField;

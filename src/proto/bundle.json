@@ -134,7 +134,12 @@
                       "id": 5
                     }
                   },
-                  "reserved": [[3, 3]]
+                  "reserved": [
+                    [
+                      3,
+                      3
+                    ]
+                  ]
                 },
                 "SomeOptions": {
                   "values": {
@@ -169,6 +174,34 @@
                             "enumField": {
                               "type": "EnumField",
                               "id": 3
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "fields": {
+                      "nested": {
+                        "int32": {
+                          "nested": {
+                            "TestFieldInt32": {
+                              "fields": {
+                                "myNumber": {
+                                  "type": "int32",
+                                  "id": 1
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "string": {
+                          "nested": {
+                            "TestFieldString": {
+                              "fields": {
+                                "myString": {
+                                  "type": "string",
+                                  "id": 1
+                                }
+                              }
                             }
                           }
                         }

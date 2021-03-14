@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package com.gradybward.protostore.input.fields.string;
+
+message TestFieldString {
+  string my_string = 1;
+}
