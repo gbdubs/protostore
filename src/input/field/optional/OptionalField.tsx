@@ -4,7 +4,7 @@ import { FieldProps } from "../FieldProps";
 
 import { Button, Form } from "antd";
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
-import React, { useState } from "react";
+import React from "react";
 
 interface OptionalFieldProps<T extends FieldProps> {
   fieldProps: T;

@@ -134,7 +134,12 @@
                       "id": 5
                     }
                   },
-                  "reserved": [[3, 3]]
+                  "reserved": [
+                    [
+                      3,
+                      3
+                    ]
+                  ]
                 },
                 "SomeOptions": {
                   "values": {
@@ -164,6 +169,81 @@
                                   "rule": "repeated",
                                   "type": "int32",
                                   "id": 1
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "message": {
+                          "nested": {
+                            "TestFieldMessageNested": {
+                              "fields": {
+                                "nested": {
+                                  "type": "Nested",
+                                  "id": 1
+                                }
+                              },
+                              "nested": {
+                                "Nested": {
+                                  "fields": {
+                                    "nestedString": {
+                                      "type": "string",
+                                      "id": 1
+                                    },
+                                    "nestedNested": {
+                                      "type": "NestedNested",
+                                      "id": 2
+                                    }
+                                  },
+                                  "nested": {
+                                    "NestedNested": {
+                                      "fields": {
+                                        "nestedNestedString": {
+                                          "type": "string",
+                                          "id": 1
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "TestFieldMessageNestedRepeated": {
+                              "fields": {
+                                "nestedMessage": {
+                                  "rule": "repeated",
+                                  "type": "Nested",
+                                  "id": 2
+                                }
+                              },
+                              "nested": {
+                                "Nested": {
+                                  "fields": {
+                                    "nestedOptionalString": {
+                                      "type": "string",
+                                      "id": 1
+                                    },
+                                    "nestedRepeatedString": {
+                                      "rule": "repeated",
+                                      "type": "string",
+                                      "id": 2
+                                    }
+                                  },
+                                  "nested": {
+                                    "NestedNested": {
+                                      "fields": {
+                                        "nestedNestedOptionalString": {
+                                          "type": "string",
+                                          "id": 1
+                                        },
+                                        "nestedNestedRepeatedString": {
+                                          "rule": "repeated",
+                                          "type": "string",
+                                          "id": 2
+                                        }
+                                      }
+                                    }
+                                  }
                                 }
                               }
                             }

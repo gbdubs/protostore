@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package com.gradybward.protostore.input.field.message;
+
+// First Test Suite
+message TestFieldMessageNested {
+  Nested nested = 1;
+  
+  message Nested {
+    string nested_string = 1;
+    NestedNested nested_nested = 2;
+  
+    message NestedNested {
+      string nested_nested_string = 1;
+    }
+  }
+}
+
+// Second Test Suite
+message TestFieldMessageNestedRepeated {
+  repeated Nested nested_message = 2;
+  
+  message Nested {
+    string nested_optional_string = 1;
+    repeated string nested_repeated_string = 2;
+    
+    message NestedNested {
+      string nested_nested_optional_string = 1;
+      repeated string nested_nested_repeated_string = 2;
+    }
+  }
+}
+
