@@ -210,33 +210,42 @@
                             },
                             "TestFieldMessageNestedRepeated": {
                               "fields": {
-                                "nestedMessage": {
+                                "nested": {
                                   "rule": "repeated",
-                                  "type": "Nested",
+                                  "type": "Nested2",
                                   "id": 2
                                 }
                               },
                               "nested": {
-                                "Nested": {
+                                "Nested2": {
                                   "fields": {
-                                    "nestedOptionalString": {
+                                    "myString": {
                                       "type": "string",
                                       "id": 1
                                     },
-                                    "nestedRepeatedString": {
+                                    "repeatedString": {
                                       "rule": "repeated",
                                       "type": "string",
                                       "id": 2
+                                    },
+                                    "nestedNested": {
+                                      "type": "NestedNested2",
+                                      "id": 3
+                                    },
+                                    "repeatedNestedNested": {
+                                      "rule": "repeated",
+                                      "type": "NestedNested2",
+                                      "id": 4
                                     }
                                   },
                                   "nested": {
-                                    "NestedNested": {
+                                    "NestedNested2": {
                                       "fields": {
-                                        "nestedNestedOptionalString": {
+                                        "myString": {
                                           "type": "string",
                                           "id": 1
                                         },
-                                        "nestedNestedRepeatedString": {
+                                        "repeatedString": {
                                           "rule": "repeated",
                                           "type": "string",
                                           "id": 2

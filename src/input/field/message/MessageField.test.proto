@@ -18,15 +18,17 @@ message TestFieldMessageNested {
 
 // Second Test Suite
 message TestFieldMessageNestedRepeated {
-  repeated Nested nested_message = 2;
+  repeated Nested2 nested = 2;
   
-  message Nested {
-    string nested_optional_string = 1;
-    repeated string nested_repeated_string = 2;
+  message Nested2 {
+    string my_string = 1;
+    repeated string repeated_string = 2;
+    NestedNested2 nested_nested = 3;
+    repeated NestedNested2 repeated_nested_nested = 4;
     
-    message NestedNested {
-      string nested_nested_optional_string = 1;
-      repeated string nested_nested_repeated_string = 2;
+    message NestedNested2 {
+      string my_string = 1;
+      repeated string repeated_string = 2;
     }
   }
 }

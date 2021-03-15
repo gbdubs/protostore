@@ -4,7 +4,7 @@ import "./index.css";
 import Input from "./input/Input";
 
 const inputProps = {
-  target: "com.gradybward.protostore.input.field.message.TestFieldMessageNested",
+  target: "com.gradybward.protostore.input.field.message.TestFieldMessageNestedRepeated",
   callback: console.log,
 };
 

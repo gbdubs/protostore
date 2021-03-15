@@ -31,7 +31,7 @@ function MessageField(messageFieldProps: MessageFieldProps) {
     const name = [...namePrefix, field.name];
     const pathPrefix = messageFieldProps.path ? messageFieldProps.path : [];
     const path = [...pathPrefix, field.name];
-    fieldsToRender.push(renderField(i, name, path, field, messageFieldProps.protobufRoot));
+    fieldsToRender.push(renderField(i, path, name, field, messageFieldProps.protobufRoot));
   }
   return <>{fieldsToRender}</>;
 }
@@ -45,8 +45,8 @@ function renderField(
 ): JSX.Element {
   const itemProps: FieldProps = {
     label: field.name,
-    name: name,
     path: path,
+    name: name,
     repeated: field.repeated,
     nested: false,
   };
